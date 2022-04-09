@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778899122742",
+    "project_id": "motivator-c47f0",
+    "storage_bucket": "motivator-c47f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778899122742:android:5d7f8c211f95d2d17ac697",
+        "android_client_info": {
+          "package_name": "com.example.tst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778899122742-rephs0po5h9lta4con5oq07la1ubm8fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYe6duSm-wIkXvuZuQRRrplOKJIOMVRbQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778899122742-rephs0po5h9lta4con5oq07la1ubm8fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
