@@ -1,5 +1,6 @@
 package com.example.tst;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,16 +29,18 @@ public class RecyclerStringAdapter extends RecyclerView.Adapter<RecyclerStringAd
     @NonNull
     @Override
     public RecyclerStringAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_targets, parent, false);
+        return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerStringAdapter.MyViewHolder holder, int position) {
-
+        String nameTarget = items.get(position);
+        holder.targetButton.setText(nameTarget);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 }

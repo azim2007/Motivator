@@ -19,13 +19,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="79dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/gradient"
+        android:onClick="RefreshRecyclerView"
+        android:text="ок"
+        app:layout_constraintStart_toEndOf="@+id/editTextSearchTarget"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="372dp"
-        android:layout_height="631dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="100dp"
+        android:id="@+id/targetsView"
+        android:layout_width="411dp"
+        android:layout_height="599dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 

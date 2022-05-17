@@ -2,6 +2,7 @@ package com.example.tst;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void SearchTargetActivity(View v){
-        //17.05.22 начать здесь переход на активити, где поиск целей из бд
+        Intent intent = new Intent(this, SearchTargetActivity.class);
+        startActivity(intent);
     }
 }
