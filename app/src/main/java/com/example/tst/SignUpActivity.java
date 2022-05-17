@@ -2,6 +2,7 @@ package com.example.tst;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,8 @@ public class SignUpActivity extends AppCompatActivity {
         User user = new User(name.getText().toString(), login.getText().toString(), password.getText().toString());
         pusher.PushUser(user);
         pusher = new Pusher();
-
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        intent.putExtra(User.class.getSimpleName(), user);
+        startActivity(intent);
     }
 }

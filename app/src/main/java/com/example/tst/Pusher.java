@@ -2,6 +2,7 @@ package com.example.tst;
 
 import android.util.Log;
 import android.util.MalformedJsonException;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 
@@ -38,7 +39,7 @@ public class Pusher {
         return IsUserUnique;
     }
 
-    private List<String> targetsNames = new ArrayList<String>();
+    private List<String> targetsNames = new ArrayList<>();
 
     public List<String> getTargetsNames() {
         return targetsNames;
@@ -113,7 +114,7 @@ public class Pusher {
         });
     }
 
-    public void UpdateNameOfTargets(){//вывод названия всех целей из БД в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
+    public void UpdateNameOfTargets(String substr){//вывод названия всех целей из БД содержаших substr в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
         targetsNames.clear();
         for (int i = 0; i < countOfTargets; i++){
             database.child(starget).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -124,7 +125,10 @@ public class Pusher {
                     }
                     else {
                         //System.out.println("firebase " + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
-                        targetsNames.add(task.getResult().getValue(Target.class).getName());
+                        String targetName = task.getResult().getValue(Target.class).getName();
+                        if(targetName.contains(substr)){
+                            targetsNames.add(targetName);
+                        }
                         //System.out.println("buf = " + buf.getName() + " " + buf.getSteps());
                     }
                 }

@@ -32,6 +32,7 @@
         android:layout_marginTop="148dp"
         android:background="@drawable/gradient"
         android:fontFamily="@font/defectica"
+        android:onClick="SearchTargetActivity"
         android:text="доступные цели"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
