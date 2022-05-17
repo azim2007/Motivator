@@ -5,4 +5,6 @@
     <string name="users_age">Users Age</string>
     <string name="get_by_id">get by id</string>
     <string name="id">id</string>
+    <string name="to_console">to console</string>
+    <string name="motivator">motivator</string>
 </resources>

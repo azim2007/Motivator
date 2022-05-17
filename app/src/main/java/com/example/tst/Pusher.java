@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.internal.Sleeper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,24 @@ import java.util.List;
 public class Pusher {
     private DatabaseReference database;//ссылка на БД, инициализируется в конструкторе(стр. 19)
     private int countOfTargets; // переменная, хранящая общее количество целей, доступных в БД
+    private int countOfUsers; // переменная, хранящая общее количество юзеров, доступных в БД
     private String scountOfTargets = "CountOfTargets"; //название ветки БД, где хранится кол-во целей
+    private String scountOfUsers = "CountOfUsers"; //название ветки БД, где хранится кол-во юзеров
     private String starget = "Target"; // название ветки БД, где хранятся цели
+    private String suser = "User"; // название ветки БД, где хранятся юзеры
     private Target buf = new Target(); // буфер обмена цели (используется в Get функциях)
+    private User thisUser; // буфер обмена юзера (используется в Get функциях)
+
+    public User getThisUser() {
+        return thisUser;
+    }
+
+    private boolean IsUserUnique = true; // проверка по логину
+
+    public boolean isUserUnique() {
+        return IsUserUnique;
+    }
+
     private List<String> targetsNames = new ArrayList<String>();
 
     public List<String> getTargetsNames() {
@@ -39,16 +55,35 @@ public class Pusher {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    System.out.println("firebase" + "Error getting data" + task.getException());
+                    Log.i("Azim","firebase" + "Error getting data" + task.getException());
                 }
                 else {
-                    System.out.println("firebase" + String.valueOf(task.getResult().getValue()));
+                    Log.i("Azim", "firebase" + String.valueOf(task.getResult().getValue()));
                     try{
                         countOfTargets = Integer.parseInt(String.valueOf(task.getResult().getValue()));
                     }
                     catch (Exception e){
                         countOfTargets = 0;
                         database.child(scountOfTargets).setValue(countOfTargets);
+                    }
+                }
+            }
+        });
+
+        database.child(scountOfUsers).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.i("Azim","firebase" + "Error getting data" + task.getException());
+                }
+                else {
+                    Log.i("Azim", "firebase" + String.valueOf(task.getResult().getValue()));
+                    try{
+                        countOfUsers = Integer.parseInt(String.valueOf(task.getResult().getValue()));
+                    }
+                    catch (Exception e){
+                        countOfUsers = 0;
+                        database.child(scountOfUsers).setValue(countOfUsers);
                     }
                 }
             }
@@ -111,6 +146,31 @@ public class Pusher {
                         if(task.getResult().getValue(Target.class).getName().equals(name)){//через == не работает(опять магия)
                             System.out.println("find by Name res" + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
                             buf = task.getResult().getValue(Target.class);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    public void PushUser(User user){// запушить юзера в БД
+        database.child(suser).child("" + countOfUsers).setValue(user);
+        countOfUsers++;
+        database.child(scountOfUsers).setValue(countOfUsers);
+    }
+
+    public void UpdateThisUser(String login, String password) {//получить юзера
+        //получение цели по названию
+        for (int i = 0; i < countOfUsers; i++){
+            database.child(suser).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        System.out.println("firebase" + "Error getting data" + task.getException());
+                    }
+                    else {
+                        if(task.getResult().getValue(User.class).getLogin().equals(login) && task.getResult().getValue(User.class).getPassword().equals(password)){//через == не работает(опять магия)
+                            thisUser = task.getResult().getValue(User.class);
                         }
                     }
                 }
