@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tst">
         <activity
+            android:name=".SearchTargetActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
