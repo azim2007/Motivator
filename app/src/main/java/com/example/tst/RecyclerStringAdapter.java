@@ -1,5 +1,6 @@
 package com.example.tst;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,14 @@ public class RecyclerStringAdapter extends RecyclerView.Adapter<RecyclerStringAd
     public void onBindViewHolder(@NonNull RecyclerStringAdapter.MyViewHolder holder, int position) {
         String nameTarget = items.get(position);
         holder.targetButton.setText(nameTarget);
+        holder.targetButton.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                Button b = (Button) v;
+                Log.i("Azim", b.getText().toString());
+                SearchTargetActivity.buttonText = b.getText().toString();
+                SearchTargetActivity.SelectedTextChange();
+            }
+        });
     }
 
     @Override

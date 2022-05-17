@@ -29,6 +29,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void SearchTargetActivity(View v){
         Intent intent = new Intent(this, SearchTargetActivity.class);
+        intent.putExtra(User.class.getSimpleName(), user);
         startActivity(intent);
     }
 }

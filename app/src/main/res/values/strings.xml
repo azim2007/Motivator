@@ -7,4 +7,5 @@
     <string name="id">id</string>
     <string name="to_console">to console</string>
     <string name="motivator">motivator</string>
+    <string name="button">button</string>
 </resources>

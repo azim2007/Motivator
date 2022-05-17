@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,30 +17,51 @@ import java.util.List;
 public class SearchTargetActivity extends AppCompatActivity {
     List<String> items;
     RecyclerView recyclerView;
+    Pusher pusher;
+    TextView substringOfName;
+    User thisUser;
+    public static String buttonText;
+    public static TextView selected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_target);
         items = new ArrayList<>();
-        listfill();
+        pusher = new Pusher();
+
+        substringOfName = findViewById(R.id.editTextSearchTarget);
+        pusher.UpdateNameOfTargets("");
+
         recyclerView = findViewById(R.id.targetsView);
-        RecyclerStringAdapter adapter = new RecyclerStringAdapter((ArrayList<String>) items);
+        RecyclerStringAdapter adapter = new RecyclerStringAdapter((ArrayList<String>) pusher.getTargetsNames());
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        selected = findViewById(R.id.selectedTarget);
+
+        Bundle arguments = getIntent().getExtras();
+        thisUser = (User) arguments.getSerializable(User.class.getSimpleName());
     }
 
-    private void listfill(){
-        items.add("как поступить в ит вуз");
-        items.add("как готовить яичницу");
-        items.add("как сделать 3д модель");
-        items.add("как лизнуть локоть");
+    public void FindTargetsWithSubstring(View v){
+        pusher.UpdateNameOfTargets(substringOfName.getText().toString());
     }
 
     public void RefreshRecyclerView(View v){
-        listfill();
-        RecyclerStringAdapter adapter = new RecyclerStringAdapter((ArrayList<String>) items);
+        RecyclerStringAdapter adapter = new RecyclerStringAdapter((ArrayList<String>) pusher.getTargetsNames());
         recyclerView.setAdapter(adapter);
     }
+
+    public void SearchTargetWithNameOnButton(View v){
+        Button button = (Button) v;
+        Log.i("Azim", button.getText().toString());
+    }
+
+    public static void SelectedTextChange(){
+        selected.setText("Выбрано: " + buttonText);
+    }
+
+    public void 
 }
