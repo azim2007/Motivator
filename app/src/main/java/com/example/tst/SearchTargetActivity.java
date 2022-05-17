@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -63,5 +65,10 @@ public class SearchTargetActivity extends AppCompatActivity {
         selected.setText("Выбрано: " + buttonText);
     }
 
-    public void 
+    public void ShowTargetActivity(View v){
+        UserAndString tarNameAndUser = new UserAndString(thisUser, buttonText);
+        Intent intent = new Intent(this, ShowTargetActivity.class);
+        intent.putExtra(UserAndString.class.getSimpleName(), tarNameAndUser);
+        startActivity(intent);
+    }
 }

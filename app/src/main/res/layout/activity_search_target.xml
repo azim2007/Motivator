@@ -61,6 +61,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="540dp"
         android:background="@drawable/gradient"
+        android:onClick="ShowTargetActivity"
         android:text="перейти по выбранному"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
