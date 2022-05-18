@@ -7,6 +7,7 @@ import java.util.List;
 // класс, описывающий этап на пути к цели
 public class Step {
     private String description; // описание того, что дожен сделать юзер для прохождения этапа
+    private String name; // имя шага
     private List<String> references = new ArrayList<String>(); // ссылки, например на видео войтенко (с огромными....)
     public String getDescription() {
         return description;
@@ -25,8 +26,9 @@ public class Step {
     }
 
     public Step(){}
-    public Step(String description, @NonNull String... references){
+    public Step(String name, String description, @NonNull String... references){
         this.description = description;
+        this.name = name;
         for(String s : references){
             this.references.add(s);
         }

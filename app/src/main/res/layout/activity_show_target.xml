@@ -4,6 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/a1"
     tools:context=".ShowTargetActivity">
 
+    <TextView
+        android:id="@+id/targetName"
+        android:layout_width="298dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/defectica"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="104dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowTarget"
+        android:text="показать"
+        app:layout_constraintStart_toEndOf="@+id/targetName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/branchNumber"
+        android:layout_width="166dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="122dp"
+        android:layout_marginEnd="123dp"
+        android:fontFamily="@font/defectica"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/targetName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="323dp"
+        android:layout_height="452dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/branchNumber" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,8 +22,7 @@ public class Target {
         this.steps = steps;
     }
 
-    @NonNull
-    private List<Step> CreateList(Step... steps){
+    public static List<Step> CreateList(Step... steps){
         List<Step> st = new ArrayList<Step>();
         for (Step s : steps) {
             st.add(s);
@@ -31,8 +30,7 @@ public class Target {
         return st;
     }
 
-    @NonNull
-    private  List<List<Step>> CreateListList(List<Step>... lists){
+    public static List<List<Step>> CreateListList(List<Step>... lists){
         List<List<Step>> st = new ArrayList<>();
         for(List<Step> l : lists){
             st.add(l);

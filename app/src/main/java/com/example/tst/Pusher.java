@@ -138,7 +138,8 @@ public class Pusher {
 
     public void UpdateTargetByName(String name) {//получить цель по названию в БД, в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
         //получение цели по названию
-        for (int i = 0; i < countOfTargets; i++){
+        Log.i("Azim", "поиск цели по имени " + countOfUsers);
+        for (int i = 0; i < 9; i++){
             database.child(starget).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
