@@ -45,10 +45,12 @@
         app:layout_constraintTop_toBottomOf="@+id/targetName" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="323dp"
-        android:layout_height="452dp"
+        android:id="@+id/stepsView"
+        android:layout_width="412dp"
+        android:layout_height="377dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/branchNumber" />
 </androidx.constraintlayout.widget.ConstraintLayout>

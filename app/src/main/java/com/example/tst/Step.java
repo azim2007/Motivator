@@ -7,6 +7,11 @@ import java.util.List;
 // класс, описывающий этап на пути к цели
 public class Step {
     private String description; // описание того, что дожен сделать юзер для прохождения этапа
+
+    public String getName() {
+        return name;
+    }
+
     private String name; // имя шага
     private List<String> references = new ArrayList<String>(); // ссылки, например на видео войтенко (с огромными....)
     public String getDescription() {

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         pusher = new Pusher();
 
         /*PushTargetsInDatabase();
+        PushTargetsInDatabase1();
         PushTargetsInDatabase2();
         PushTargetsInDatabase3();*/
     }

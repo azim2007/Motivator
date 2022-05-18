@@ -149,7 +149,7 @@ public class Pusher {
                     else {
                         System.out.println("try to find by Name res '" + name + "' '" + task.getResult().getValue(Target.class).getName() + "'");
                         if(task.getResult().getValue(Target.class).getName().equals(name)){//через == не работает(опять магия)
-                            System.out.println("find by Name res" + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
+                            System.out.println("find by Name res" + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps().get(0).get(0).getDescription());
                             buf = task.getResult().getValue(Target.class);
                         }
                     }
