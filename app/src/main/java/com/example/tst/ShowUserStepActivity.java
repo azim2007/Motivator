@@ -55,7 +55,25 @@ public class ShowUserStepActivity extends AppCompatActivity {
 
     public void CompleteActivity(View v){
         Log.i("Azim", "complete");
-        pusher.PushUserCompleteStep(userAndNameStep.getUser(), userTarget, userTarget.getCurrentStep() + 1);
+        if(userTarget.getCurrentStep() + 1 != userTarget.getTarget().getSteps().get(userTarget.getSelectedBranch()).size()){
+            pusher.PushUserCompleteStep(userAndNameStep.getUser(), userTarget, userTarget.getCurrentStep() + 1);
+            CompleteActivity.isTargetComplete = false;
+            pusher.PushStarsToUser(userAndNameStep.getUser(), userAndNameStep.getUser().getStarsCount() + 1);
+            ActLoad();
+        }
+
+        else{
+            pusher.DeleteUserTarget(userAndNameStep.getUser(), userTarget, countOfTargets);
+            pusher.PushStarsToUser(userAndNameStep.getUser(), userAndNameStep.getUser().getStarsCount() + 5);
+            CompleteActivity.isTargetComplete = true;
+            ActLoad();
+        }
+    }
+
+    private void ActLoad(){
+        Intent intent = new Intent(this, CompleteActivity.class);
+        intent.putExtra(User.class.getSimpleName(), userAndNameStep.getUser());
+        startActivity(intent);
     }
 
     public void InternetSearch(View v){

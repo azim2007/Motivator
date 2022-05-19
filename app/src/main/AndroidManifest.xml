@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tst">
         <activity
+            android:name=".CompleteActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowUserStepActivity"
             android:exported="false" />
         <activity
