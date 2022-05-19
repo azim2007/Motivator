@@ -66,6 +66,7 @@ public class SearchTargetActivity extends AppCompatActivity {
     }
 
     public void ShowTargetActivity(View v){
+        ShowTargetActivity.countOfTargets = pusher.getCountOfTargets();
         UserAndString tarNameAndUser = new UserAndString(thisUser, buttonText);
         Intent intent = new Intent(this, ShowTargetActivity.class);
         intent.putExtra(UserAndString.class.getSimpleName(), tarNameAndUser);

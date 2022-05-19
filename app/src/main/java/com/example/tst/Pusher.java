@@ -20,10 +20,23 @@ import java.util.List;
 //класс для работы с БД
 public class Pusher {
     private DatabaseReference database;//ссылка на БД, инициализируется в конструкторе(стр. 19)
+
+    public int getCountOfTargets() {
+        return countOfTargets;
+    }
+
     private int countOfTargets; // переменная, хранящая общее количество целей, доступных в БД
+
+    public int getCountOfUsers() {
+        return countOfUsers;
+    }
+
     private int countOfUsers; // переменная, хранящая общее количество юзеров, доступных в БД
+
     private String scountOfTargets = "CountOfTargets"; //название ветки БД, где хранится кол-во целей
     private String scountOfUsers = "CountOfUsers"; //название ветки БД, где хранится кол-во юзеров
+    private String scountOfUserTargets = "CountOfUserTargets"; //название ветки БД, где хранится кол-во юзеров
+    private String suserTarget = "UserTarget"; //название ветки БД, где хранится цели юзеров
     private String starget = "Target"; // название ветки БД, где хранятся цели
     private String suser = "User"; // название ветки БД, где хранятся юзеры
     private Target buf = new Target(); // буфер обмена цели (используется в Get функциях)
@@ -40,6 +53,12 @@ public class Pusher {
     }
 
     private List<String> targetsNames = new ArrayList<>();
+
+    public List<TargetLocal> getUserTargets() {
+        return userTargets;
+    }
+
+    private List<TargetLocal> userTargets = new ArrayList<>();
 
     public List<String> getTargetsNames() {
         return targetsNames;
@@ -89,6 +108,7 @@ public class Pusher {
                 }
             }
         });
+
         System.out.println("countOfTargets: " + countOfTargets);
     }
     public void PushTarget(Target t){// запушить цель в БД
@@ -136,10 +156,10 @@ public class Pusher {
         }
     }
 
-    public void UpdateTargetByName(String name) {//получить цель по названию в БД, в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
+    public void UpdateTargetByName(String name, int countOfTargets) {//получить цель по названию в БД, в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
         //получение цели по названию
         Log.i("Azim", "поиск цели по имени " + countOfUsers);
-        for (int i = 0; i < 9; i++){
+        for (int i = 0; i < countOfTargets; i++){
             database.child(starget).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -181,5 +201,35 @@ public class Pusher {
                 }
             });
         }
+    }
+
+    public void UpdateUserTargets(User user, int countOfTargets){
+        userTargets.clear();
+        for(int i = 0; i < countOfTargets; i++){
+            try{
+                database.child(suserTarget).child(user.getLogin()).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            System.out.println("firebase" + "Error getting data" + task.getException());
+                        }
+                        else {
+                            //System.out.println("firebase " + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
+                            TargetLocal target = task.getResult().getValue(TargetLocal.class);
+                            if(target != null){
+                                userTargets.add(target);
+                                Log.i("Azim", "adding userTarget");
+                            }
+                            //System.out.println("buf = " + buf.getName() + " " + buf.getSteps());
+                        }
+                    }
+                });
+            }
+            catch (Exception e){}
+        }
+    }
+
+    public void PushUserTarget(User user, TargetLocal target, int number){
+        database.child(suserTarget).child(user.getLogin()).child("" + number).setValue(target);
     }
 }

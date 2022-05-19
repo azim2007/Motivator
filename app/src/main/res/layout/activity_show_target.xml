@@ -44,6 +44,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/targetName" />
 
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="116dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="270dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ChangeBranch"
+        android:text="другая ветка"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepsView" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="258dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="AddBranchIntoUserTargets"
+        android:text="добавить эту ветку в мои цели"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepsView" />
+
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="343dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="33dp"
+        android:fontFamily="@font/defectica"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button11" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stepsView"
         android:layout_width="412dp"

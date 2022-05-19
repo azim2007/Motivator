@@ -15,11 +15,12 @@ import java.util.List;
 
 public class ShowTargetActivity extends AppCompatActivity {
     UserAndString tarNameAndUser;
-    TextView header;
+    TextView header, tNumberOfBranch, tMessage;
     Pusher pusher;
     RecyclerView recyclerView;
     int numberOfBranch; // нужен в showtarget изменяется при нажатии на стрелочки в активити
     public static String SelectedStep;
+    public static int countOfTargets;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,8 @@ public class ShowTargetActivity extends AppCompatActivity {
         header.setText(tarNameAndUser.getString());
 
         pusher = new Pusher();
-        pusher.UpdateTargetByName(tarNameAndUser.getString());
+        pusher.UpdateTargetByName(tarNameAndUser.getString(), countOfTargets);
+        Log.i("Azim", "countOfTargets2 " + countOfTargets);
 
         recyclerView = findViewById(R.id.stepsView);
         RecyclerStepAdapter adapter = new RecyclerStepAdapter(new ArrayList<String>());
@@ -43,11 +45,20 @@ public class ShowTargetActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         numberOfBranch = 0;
+
+        tNumberOfBranch = findViewById(R.id.branchNumber);
+        tNumberOfBranch.setText("Ветка 1");
+
+        tMessage = findViewById(R.id.textMessage);
+        tMessage.setText("выберите ветку");
     }
 
     public void ShowTarget(View v){
         List<Step> stepsInBranch = new ArrayList<>();
-        stepsInBranch = pusher.getBuf().getSteps().get(numberOfBranch);
+        int countBranches = pusher.getBuf().getSteps().size();
+        Log.i("Azim", "count branches" + countBranches);
+        stepsInBranch = pusher.getBuf().getSteps().get(numberOfBranch % countBranches);
+        tNumberOfBranch.setText("Ветка " + (numberOfBranch % countBranches + 1));
         List<String> namesOfSteps = new ArrayList<>();
         for (Step e : stepsInBranch) {
             namesOfSteps.add(e.getName());
@@ -56,5 +67,40 @@ public class ShowTargetActivity extends AppCompatActivity {
         Log.i("Azim", "" + pusher.getBuf().getName());
         RecyclerStepAdapter adapter = new RecyclerStepAdapter((ArrayList<String>) namesOfSteps);
         recyclerView.setAdapter(adapter);
+
+        //это для пуша
+        pusher.UpdateUserTargets(tarNameAndUser.getUser(), countOfTargets);
+    }
+
+    public void ChangeBranch(View v){
+        numberOfBranch++;
+        ShowTarget();
+    }
+
+    public void ShowTarget(){
+        List<Step> stepsInBranch = new ArrayList<>();
+        int countBranches = pusher.getBuf().getSteps().size();
+        Log.i("Azim", "count branches" + countBranches);
+        stepsInBranch = pusher.getBuf().getSteps().get(numberOfBranch % countBranches);
+        tNumberOfBranch.setText("Ветка " + (numberOfBranch % countBranches + 1));
+        List<String> namesOfSteps = new ArrayList<>();
+        for (Step e : stepsInBranch) {
+            namesOfSteps.add(e.getName());
+            Log.i("Azim", "" + e.getName());
+        }
+        Log.i("Azim", "" + pusher.getBuf().getName());
+        RecyclerStepAdapter adapter = new RecyclerStepAdapter((ArrayList<String>) namesOfSteps);
+        recyclerView.setAdapter(adapter);
+
+        //это для пуша
+        pusher.UpdateUserTargets(tarNameAndUser.getUser(), countOfTargets);
+    }
+
+    public void AddBranchIntoUserTargets(View v){
+        int countBranches = pusher.getBuf().getSteps().size();
+        int countOfUserTargets = pusher.getUserTargets().size();
+        Log.i("Azim", "" + countOfUserTargets);
+        TargetLocal userTarget = new TargetLocal(pusher.getBuf(), numberOfBranch % countBranches);
+        pusher.PushUserTarget(tarNameAndUser.getUser(), userTarget, countOfUserTargets);
     }
 }
