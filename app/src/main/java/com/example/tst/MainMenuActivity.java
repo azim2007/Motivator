@@ -14,6 +14,7 @@ import java.util.Random;
 public class MainMenuActivity extends AppCompatActivity {
     User user;
     TextView headerText;
+    Pusher pusher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String[] privets = {"Здравствуйте, ", "Добрый день, ", "Всего хорошего, "};
@@ -25,11 +26,20 @@ public class MainMenuActivity extends AppCompatActivity {
         Log.i("Azim", user.getLogin() + " " + user.getName());
         Random r = new Random();
         headerText.setText(privets[r.nextInt() % 3] + user.getName()); //ну типа разные приветики)
+
+        pusher = new Pusher();
     }
 
     public void SearchTargetActivity(View v){
         Intent intent = new Intent(this, SearchTargetActivity.class);
         intent.putExtra(User.class.getSimpleName(), user);
+        startActivity(intent);
+    }
+
+    public void MyTargetsActivity(View v){
+        Intent intent = new Intent(this, MyTargetsActivity.class);
+        intent.putExtra(User.class.getSimpleName(), user);
+        MyTargetsActivity.countOfTargets = pusher.getCountOfTargets();
         startActivity(intent);
     }
 }
