@@ -99,8 +99,23 @@ public class ShowTargetActivity extends AppCompatActivity {
     public void AddBranchIntoUserTargets(View v){
         int countBranches = pusher.getBuf().getSteps().size();
         int countOfUserTargets = pusher.getUserTargets().size();
-        Log.i("Azim", "" + countOfUserTargets);
-        TargetLocal userTarget = new TargetLocal(pusher.getBuf(), numberOfBranch % countBranches);
-        pusher.PushUserTarget(tarNameAndUser.getUser(), userTarget, countOfUserTargets);
+        boolean isTarget = true;
+        for(TargetLocal e : pusher.getUserTargets()){
+            Log.i("Azim", e.getTarget().getName() + " " + pusher.getBuf().getName());
+            if(e.getTarget().getName().equals(pusher.getBuf().getName())){
+                Log.i("Azim", "founded");
+                isTarget = false;
+                break;
+            }
+        }
+        if(isTarget){
+            Log.i("Azim", "" + countOfUserTargets);
+            TargetLocal userTarget = new TargetLocal(pusher.getBuf(), numberOfBranch % countBranches);
+            pusher.PushUserTarget(tarNameAndUser.getUser(), userTarget, countOfUserTargets);
+            tMessage.setText("цель " + pusher.getBuf().getName() + " по ветке " + numberOfBranch % countBranches + " успешно добавлена");
+        }
+        else {
+            tMessage.setText("вы не можете добавить цель, которая у вас уже есть");
+        }
     }
 }
