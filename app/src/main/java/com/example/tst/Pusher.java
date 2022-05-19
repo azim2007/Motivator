@@ -41,7 +41,13 @@ public class Pusher {
     private String suser = "User"; // название ветки БД, где хранятся юзеры
     private Target buf = new Target(); // буфер обмена цели (используется в Get функциях)
     private User thisUser = new User(); // буфер обмена юзера (используется в Get функциях)
+    private int index = 0;
 
+    public List<Step> getBranch() {
+        return branch;
+    }
+
+    private List<Step> branch = new ArrayList<>();
     public TargetLocal getUserTarget() {
         return userTarget;
     }
@@ -267,5 +273,44 @@ public class Pusher {
             }
             catch (Exception e){}
         }
+    }
+
+
+
+    public void PushUserCompleteStep(User user, TargetLocal userTarget, int newCurrentStep){
+        index = -1;
+        for(int i = 0; i < countOfTargets; i++){
+            try{
+                database.child(suserTarget).child(user.getLogin()).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            System.out.println("firebase" + "Error getting data" + task.getException());
+                        }
+                        else {
+                            //System.out.println("firebase " + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
+                            TargetLocal target = task.getResult().getValue(TargetLocal.class);
+                            index++;
+                            try{
+                                Log.i("Azim", "" + target.getTarget().getName() + userTarget.getTarget().getName() + index);
+                            }
+                            catch (Exception e){
+                                Log.i("Azim", "null" + index);
+                            }
+
+                            if(target != null){
+                                if(target.getTarget().getName().equals(userTarget.getTarget().getName())){
+                                    Log.i("Azim", "target foundede");
+                                    database.child(suserTarget).child(user.getLogin()).child("" + index).child("currentStep").setValue(newCurrentStep);
+                                }
+                            }
+                            //System.out.println("buf = " + buf.getName() + " " + buf.getSteps());
+                        }
+                    }
+                });
+            }
+            catch (Exception e){}
+        }
+
     }
 }

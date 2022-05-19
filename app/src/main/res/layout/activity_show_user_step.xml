@@ -4,6 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/a1"
     tools:context=".ShowUserStepActivity">
 
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="137dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="CompleteActivity"
+        android:text="выполнено"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/referencesView" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="115dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowStep"
+        android:text="показать"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textTargetName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textTargetName"
+        android:layout_width="293dp"
+        android:layout_height="94dp"
+        android:fontFamily="@font/defectica"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textStepDescription"
+        android:layout_width="411dp"
+        android:layout_height="216dp"
+        android:fontFamily="@font/defectica"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTargetName" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="135dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="66dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="InternetSearch"
+        android:text="перейти по ссылке"
+        app:layout_constraintEnd_toStartOf="@+id/button16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/referencesView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/referencesView"
+        android:layout_width="411dp"
+        android:layout_height="227dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textStepDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

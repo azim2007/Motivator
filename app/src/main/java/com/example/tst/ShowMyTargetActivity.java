@@ -77,19 +77,21 @@ public class ShowMyTargetActivity extends AppCompatActivity {
         }
         else if(selectedStep.contains("(текущий)")){
             ShowUserStepActivity.isCurrent = true;
-            TargetLocal target = pusher.getUserTarget();
-            ShowUserStepActivity.userTarget = target;
-            Intent intent = new Intent(this, ShowUserStepActivity.class);
-            intent.putExtra(UserAndString.class.getSimpleName(), userAndNameTarget);
-            startActivity(intent);
+            ActLoad();
         }
         else {
             ShowUserStepActivity.isCurrent = false;
-            TargetLocal target = pusher.getUserTarget();
-            ShowUserStepActivity.userTarget = target;
-            Intent intent = new Intent(this, ShowUserStepActivity.class);
-            intent.putExtra(UserAndString.class.getSimpleName(), userAndNameTarget);
-            startActivity(intent);
+            ActLoad();
         }
+    }
+
+    private void ActLoad(){
+        TargetLocal target = pusher.getUserTarget();
+        ShowUserStepActivity.userTarget = target;
+        UserAndString userAndStepName = new UserAndString(userAndNameTarget.getUser(), selectedStep);
+        Intent intent = new Intent(this, ShowUserStepActivity.class);
+        intent.putExtra(UserAndString.class.getSimpleName(), userAndStepName);
+        ShowUserStepActivity.countOfTargets = pusher.getCountOfTargets();
+        startActivity(intent);
     }
 }
