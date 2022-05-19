@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerStepAdapter extends RecyclerView.Adapter<RecyclerStepAdapter.MyViewHolder> {
+public class RecyclerUserStepAdapter extends RecyclerView.Adapter<RecyclerUserStepAdapter.MyViewHolder> {
     private ArrayList<String> items;
-    public RecyclerStepAdapter(ArrayList<String> items){
+    public RecyclerUserStepAdapter(ArrayList<String> items){
         this.items = items;
     }
 
@@ -28,20 +28,21 @@ public class RecyclerStepAdapter extends RecyclerView.Adapter<RecyclerStepAdapte
 
     @NonNull
     @Override
-    public RecyclerStepAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerUserStepAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_targets, parent, false);
-        return new RecyclerStepAdapter.MyViewHolder(itemView);
+        return new RecyclerUserStepAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerStepAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerUserStepAdapter.MyViewHolder holder, int position) {
         String nameTarget = items.get(position);
         holder.targetButton.setText(nameTarget);
         holder.targetButton.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v){
                 Button b = (Button) v;
                 Log.i("Azim", b.getText().toString());
-                ShowTargetActivity.SelectedStep = b.getText().toString();
+                ShowMyTargetActivity.selectedStep = b.getText().toString();
+                ShowMyTargetActivity.ChangeSelectedText();
             }
         });
     }

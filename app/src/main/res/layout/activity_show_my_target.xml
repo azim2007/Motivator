@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/a1"
+    tools:context=".ShowMyTargetActivity">
+
+    <TextView
+        android:id="@+id/textNameOfUserTarget"
+        android:layout_width="285dp"
+        android:layout_height="78dp"
+        android:fontFamily="@font/defectica"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="126dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowUserStep"
+        android:text="показать"
+        app:layout_constraintStart_toEndOf="@+id/textNameOfUserTarget"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="253dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowUserStep"
+        android:text="перейти по выбранному"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelectedStep" />
+
+    <TextView
+        android:id="@+id/textSelectedStep"
+        android:layout_width="411dp"
+        android:layout_height="76dp"
+        android:fontFamily="@font/defectica"
+        android:text="выбрано: вы пока что ничего не выбрали"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="410dp"
+        android:layout_height="364dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNameOfUserTarget" />
+</androidx.constraintlayout.widget.ConstraintLayout>

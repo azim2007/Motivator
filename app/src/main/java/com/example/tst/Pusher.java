@@ -40,7 +40,13 @@ public class Pusher {
     private String starget = "Target"; // название ветки БД, где хранятся цели
     private String suser = "User"; // название ветки БД, где хранятся юзеры
     private Target buf = new Target(); // буфер обмена цели (используется в Get функциях)
-    private User thisUser; // буфер обмена юзера (используется в Get функциях)
+    private User thisUser = new User(); // буфер обмена юзера (используется в Get функциях)
+
+    public TargetLocal getUserTarget() {
+        return userTarget;
+    }
+
+    private TargetLocal userTarget = new TargetLocal();
 
     public User getThisUser() {
         return thisUser;
@@ -231,5 +237,35 @@ public class Pusher {
 
     public void PushUserTarget(User user, TargetLocal target, int number){
         database.child(suserTarget).child(user.getLogin()).child("" + number).setValue(target);
+    }
+
+    public void DeleteUserTarget(User user, int number){
+        database.child(suserTarget).child(user.getLogin()).child("" + number).removeValue();
+    }
+
+    public void UpdateUserTarget(User user, String nameOfTarget, int countOfTargets){
+        for(int i = 0; i < countOfTargets; i++){
+            try{
+                database.child(suserTarget).child(user.getLogin()).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            System.out.println("firebase" + "Error getting data" + task.getException());
+                        }
+                        else {
+                            //System.out.println("firebase " + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
+                            TargetLocal target = task.getResult().getValue(TargetLocal.class);
+                            if(target != null){
+                                if(target.getTarget().getName().equals(nameOfTarget)){
+                                    userTarget = target;
+                                }
+                            }
+                            //System.out.println("buf = " + buf.getName() + " " + buf.getSteps());
+                        }
+                    }
+                });
+            }
+            catch (Exception e){}
+        }
     }
 }

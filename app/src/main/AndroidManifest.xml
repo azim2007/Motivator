@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tst">
         <activity
+            android:name=".ShowMyTargetActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyTargetsActivity"
             android:exported="false" />
         <activity

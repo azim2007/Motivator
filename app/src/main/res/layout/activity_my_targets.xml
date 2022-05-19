@@ -40,6 +40,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myTargets" />
 
+    <TextView
+        android:id="@+id/textSelectedTarget"
+        android:layout_width="403dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="86dp"
+        android:fontFamily="@font/defectica"
+        android:text="Выбрано: вы пока что ничего не выбрали"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCountUserTargets" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="237dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginEnd="164dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowMyTargetActivity"
+        android:text="перейти по выбранному"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelectedTarget" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myTargets"
         android:layout_width="411dp"

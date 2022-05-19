@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,9 +17,11 @@ import java.util.List;
 public class MyTargetsActivity extends AppCompatActivity {
     RecyclerView myTargets;
     TextView countOfUserTargets;
+    public static TextView tSelectedTarget;
     User user;
     Pusher pusher;
     public static int countOfTargets;
+    public static String selectedTarget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class MyTargetsActivity extends AppCompatActivity {
         Log.i("Azim", "" + countOfTargets);
 
         countOfUserTargets = findViewById(R.id.textCountUserTargets);
+
+        tSelectedTarget = findViewById(R.id.textSelectedTarget);
     }
 
     public void ShowUserTargets(View v){
@@ -52,5 +57,17 @@ public class MyTargetsActivity extends AppCompatActivity {
         RecyclerUserTargetsAdapter adapter = new RecyclerUserTargetsAdapter((ArrayList<String>) namesOfUsertargets);
         myTargets.setAdapter(adapter);
         countOfUserTargets.setText("всего " + namesOfUsertargets.size() + " небольших целей для большого счастья");
+    }
+
+    public static void ChangeSelectedText(){
+        tSelectedTarget.setText("выбрано: " + selectedTarget);
+    }
+
+    public void ShowMyTargetActivity(View v){
+        Intent intent = new Intent(this, ShowMyTargetActivity.class);
+        UserAndString userAndNameTarget = new UserAndString(user, selectedTarget);
+        intent.putExtra(UserAndString.class.getSimpleName(), userAndNameTarget);
+        ShowMyTargetActivity.countOfTargets = pusher.getCountOfTargets();
+        startActivity(intent);
     }
 }

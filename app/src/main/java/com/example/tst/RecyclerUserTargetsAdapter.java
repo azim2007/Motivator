@@ -41,8 +41,8 @@ public class RecyclerUserTargetsAdapter extends RecyclerView.Adapter<RecyclerUse
             public void onClick(View v){
                 Button b = (Button) v;
                 Log.i("Azim", b.getText().toString());
-                ShowTargetActivity.SelectedStep = b.getText().toString();
-                SearchTargetActivity.SelectedTextChange();
+                MyTargetsActivity.selectedTarget = b.getText().toString();
+                MyTargetsActivity.ChangeSelectedText();
             }
         });
     }
