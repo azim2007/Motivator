@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -68,5 +69,27 @@ public class ShowMyTargetActivity extends AppCompatActivity {
 
     public static void ChangeSelectedText(){
         tMessage.setText("выбрано: " + selectedStep);
+    }
+
+    public void ShowUserStepActivity(View v){
+        if(selectedStep.contains("(выполнено)")){
+            tMessage.setText("вы уже выполнили этот шаг");
+        }
+        else if(selectedStep.contains("(текущий)")){
+            ShowUserStepActivity.isCurrent = true;
+            TargetLocal target = pusher.getUserTarget();
+            ShowUserStepActivity.userTarget = target;
+            Intent intent = new Intent(this, ShowUserStepActivity.class);
+            intent.putExtra(UserAndString.class.getSimpleName(), userAndNameTarget);
+            startActivity(intent);
+        }
+        else {
+            ShowUserStepActivity.isCurrent = false;
+            TargetLocal target = pusher.getUserTarget();
+            ShowUserStepActivity.userTarget = target;
+            Intent intent = new Intent(this, ShowUserStepActivity.class);
+            intent.putExtra(UserAndString.class.getSimpleName(), userAndNameTarget);
+            startActivity(intent);
+        }
     }
 }

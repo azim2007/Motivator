@@ -36,7 +36,7 @@
         android:layout_marginEnd="76dp"
         android:background="@drawable/gradient"
         android:fontFamily="@font/defectica"
-        android:onClick="ShowUserStep"
+        android:onClick="ShowUserStepActivity"
         android:text="перейти по выбранному"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
