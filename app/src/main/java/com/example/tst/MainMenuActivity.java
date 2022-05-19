@@ -15,15 +15,25 @@ public class MainMenuActivity extends AppCompatActivity {
     User user;
     TextView headerText;
     Pusher pusher;
+    public static User statUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String[] privets = {"Здравствуйте, ", "Добрый день, ", "Всего хорошего, "};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        Bundle arguments = getIntent().getExtras();
+        try{
+            statUser.getName();
+            user = statUser;
+            statUser = null;
+        }
+        catch(Exception e){
+            Bundle arguments = getIntent().getExtras();
+            user = (User) arguments.getSerializable(User.class.getSimpleName());
+        }
+
         headerText = findViewById(R.id.headerText1);
-        user = (User) arguments.getSerializable(User.class.getSimpleName());
-        Log.i("Azim", user.getLogin() + " " + user.getName());
+
+        Log.i("Azim", user.getLogin() + " " + user.getName() + " " + user.getStarsCount());
         Random r = new Random();
         headerText.setText(privets[r.nextInt() % 3] + user.getName()); //ну типа разные приветики)
 
@@ -33,6 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void SearchTargetActivity(View v){
         Intent intent = new Intent(this, SearchTargetActivity.class);
         intent.putExtra(User.class.getSimpleName(), user);
+        statUser = null;
         startActivity(intent);
     }
 
@@ -40,6 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyTargetsActivity.class);
         intent.putExtra(User.class.getSimpleName(), user);
         MyTargetsActivity.countOfTargets = pusher.getCountOfTargets();
+        statUser = null;
         startActivity(intent);
     }
 }

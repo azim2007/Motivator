@@ -35,6 +35,7 @@ public class CompleteActivity extends AppCompatActivity {
 
     public void MenuActivity(View v){
         Intent intent = new Intent(this, MainMenuActivity.class);
-        intent.putExtra(User.class.getSimpleName(), user);
+        MainMenuActivity.statUser = user;
+        startActivity(intent);
     }
 }
