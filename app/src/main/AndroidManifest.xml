@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tst">
         <activity
+            android:name=".CurrentStepsActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserCabinetActivity"
             android:exported="false" />
         <activity

@@ -22,7 +22,7 @@ public class RecyclerUserTargetsAdapter extends RecyclerView.Adapter<RecyclerUse
 
         public MyViewHolder(final View v){
             super(v);
-            targetButton = v.findViewById(R.id.targetButton);
+            targetButton = v.findViewById(R.id.stepButton);
         }
     }
 

@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerStringAdapter extends RecyclerView.Adapter<RecyclerStringAdapter.MyViewHolder> {
     private ArrayList<String> items;
@@ -23,7 +22,7 @@ public class RecyclerStringAdapter extends RecyclerView.Adapter<RecyclerStringAd
 
         public MyViewHolder(final View v){
             super(v);
-            targetButton = v.findViewById(R.id.targetButton);
+            targetButton = v.findViewById(R.id.stepButton);
         }
     }
 

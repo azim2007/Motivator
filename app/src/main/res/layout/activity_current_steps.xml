@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/a1"
+    tools:context=".CurrentStepsActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="301dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/defectica"
+        android:text="текущие шаги"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textSelectedCurrentStep"
+        android:layout_width="411dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/defectica"
+        android:text="выбрано: вы пока что ничего не выбрали"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerCurrentSteps" />
+
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="186dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="113dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowUserStepActivity1"
+        android:text="перейти по выбранному"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelectedCurrentStep" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="ShowUserSteps"
+        android:text="показать"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCurrentSteps"
+        android:layout_width="411dp"
+        android:layout_height="385dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,6 +60,7 @@
         android:layout_marginTop="320dp"
         android:background="@drawable/gradient"
         android:fontFamily="@font/defectica"
+        android:onClick="MyStepsActivity"
         android:text="текущие шаги"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

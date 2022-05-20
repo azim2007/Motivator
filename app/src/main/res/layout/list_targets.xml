@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/targetButton"
+        android:id="@+id/stepButton"
         android:layout_width="298dp"
         android:layout_height="58dp"
         android:layout_marginStart="62dp"

@@ -52,10 +52,18 @@ public class MainMenuActivity extends AppCompatActivity {
         MyTargetsActivity.countOfTargets = pusher.getCountOfTargets();
         startActivity(intent);
     }
+
     public void UserCabinetActivity(View v){
         Intent intent = new Intent(this, UserCabinetActivity.class);
         intent.putExtra(User.class.getSimpleName(), user);
         UserCabinetActivity.userCount = pusher.getCountOfUsers();
+        startActivity(intent);
+    }
+
+    public void MyStepsActivity(View v){
+        Intent intent = new Intent(this, CurrentStepsActivity.class);
+        intent.putExtra(User.class.getSimpleName(), user);
+        CurrentStepsActivity.countOfTargets = pusher.getCountOfTargets();
         startActivity(intent);
     }
 }

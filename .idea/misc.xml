@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/79120/AndroidStudioProjects/Tst/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_complete.xml" value="0.19021739130434784" />
+        <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_current_steps.xml" value="0.19021739130434784" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_main_menu.xml" value="0.19384057971014493" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_my_targets.xml" value="0.25" />
@@ -15,6 +16,8 @@
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_sign_up.xml" value="0.18333333333333332" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/activity_user_cabinet.xml" value="0.19021739130434784" />
+        <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/list_currentSteps.xml" value="0.19021739130434784" />
+        <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/list_current_steps.xml" value="0.19021739130434784" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/list_targets.xml" value="0.23541666666666666" />
         <entry key="..\:/motivator2/usingFB/app/src/main/res/layout/references.xml" value="0.25" />
       </map>
