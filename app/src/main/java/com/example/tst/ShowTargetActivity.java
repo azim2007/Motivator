@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ public class ShowTargetActivity extends AppCompatActivity {
 
     public void AddBranchIntoUserTargets(View v){
         int countBranches = pusher.getBuf().getSteps().size();
-        int countOfUserTargets = pusher.getUserTargets().size();
+        //int countOfUserTargets = pusher.getUserTargets().size();
         boolean isTarget = true;
         for(TargetLocal e : pusher.getUserTargets()){
             Log.i("Azim", e.getTarget().getName() + " " + pusher.getBuf().getName());
@@ -109,10 +110,12 @@ public class ShowTargetActivity extends AppCompatActivity {
             }
         }
         if(isTarget){
-            Log.i("Azim", "" + countOfUserTargets);
+            //Log.i("Azim", "" + countOfUserTargets);
             TargetLocal userTarget = new TargetLocal(pusher.getBuf(), numberOfBranch % countBranches);
-            pusher.PushUserTarget(tarNameAndUser.getUser(), userTarget, countOfUserTargets);
-            tMessage.setText("цель " + pusher.getBuf().getName() + " по ветке " + numberOfBranch % countBranches + " успешно добавлена");
+            pusher.PushUserTarget(tarNameAndUser.getUser(), userTarget);
+            tMessage.setText("цель " + pusher.getBuf().getName() + " по ветке " + (numberOfBranch % countBranches + 1) + " успешно добавлена");
+            Button b = (Button) v;
+            b.setEnabled(false);
         }
         else {
             tMessage.setText("вы не можете добавить цель, которая у вас уже есть");

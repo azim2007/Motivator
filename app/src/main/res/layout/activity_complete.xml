@@ -20,9 +20,10 @@
 
     <TextView
         android:id="@+id/textMessageComplete"
-        android:layout_width="411dp"
-        android:layout_height="349dp"
+        android:layout_width="405dp"
+        android:layout_height="196dp"
         android:text="TextView"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

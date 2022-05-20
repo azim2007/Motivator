@@ -43,6 +43,13 @@ public class Pusher {
     private User thisUser = new User(); // буфер обмена юзера (используется в Get функциях)
     private int index = 0;
     private int index2 = 0;
+    private int index3 = 0;
+
+    public List<String> getNameOfUsers() {
+        return nameOfUsers;
+    }
+
+    private List<String> nameOfUsers = new ArrayList<>();
 
     public List<Step> getBranch() {
         return branch;
@@ -169,6 +176,26 @@ public class Pusher {
         }
     }
 
+    public void UpdateNameOfUsers(int countOfUsers){//вывод названия всех целей из БД содержаших substr в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
+        nameOfUsers.clear();
+        for (int i = 0; i < countOfUsers; i++){
+            database.child(suser).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        System.out.println("firebase" + "Error getting data" + task.getException());
+                    }
+                    else {
+                        //System.out.println("firebase " + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
+                        String userName = task.getResult().getValue(User.class).getLogin();
+                        nameOfUsers.add(userName);
+                        //System.out.println("buf = " + buf.getName() + " " + buf.getSteps());
+                    }
+                }
+            });
+        }
+    }
+
     public void UpdateTargetByName(String name, int countOfTargets) {//получить цель по названию в БД, в буфер, после чего из буфера можно получить в теле другой функции с помощью геттера
         //получение цели по названию
         Log.i("Azim", "поиск цели по имени " + countOfUsers);
@@ -216,6 +243,25 @@ public class Pusher {
         }
     }
 
+    public void UpdateThisUser(String login, String password, int countOfUsers) {//получить юзера
+        //получение цели по названию
+        for (int i = 0; i < countOfUsers; i++){
+            database.child(suser).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        System.out.println("firebase" + "Error getting data" + task.getException());
+                    }
+                    else {
+                        if(task.getResult().getValue(User.class).getLogin().equals(login) && task.getResult().getValue(User.class).getPassword().equals(password)){//через == не работает(опять магия)
+                            thisUser = task.getResult().getValue(User.class);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
     public void UpdateUserTargets(User user, int countOfTargets){
         userTargets.clear();
         for(int i = 0; i < countOfTargets; i++){
@@ -242,8 +288,50 @@ public class Pusher {
         }
     }
 
-    public void PushUserTarget(User user, TargetLocal target, int number){
-        database.child(suserTarget).child(user.getLogin()).child("" + number).setValue(target);
+    boolean isFirst = true;
+    public void PushUserTarget(User user, TargetLocal userTarget){
+        index3 = 0;
+        isFirst = true;
+        for(int i = 0; i < countOfTargets; i ++){
+            try{
+                database.child(suserTarget).child(user.getLogin()).child("" + i).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            System.out.println("firebase" + "Error getting data" + task.getException());
+                        }
+                        else if(!isFirst){
+                            //System.out.println("firebase " + task.getResult().getValue(Target.class).getName() + " " + task.getResult().getValue(Target.class).getSteps());
+                            TargetLocal target = task.getResult().getValue(TargetLocal.class);
+                            if(target != null){
+                                index3++;
+                                try{
+                                    Log.i("Azim", "index3++" + index3 + target.getTarget().getName());
+                                }
+                                catch(Exception e){
+                                    database.child(suserTarget).child(user.getLogin()).child("" + (index3 - 1)).setValue(userTarget);
+                                    Log.i("Azim", "founded 1 " + index3);
+                                    isFirst = true;
+                                }
+                            }
+                            else{
+                                database.child(suserTarget).child(user.getLogin()).child("" + index3).setValue(userTarget);
+                                Log.i("Azim", "founded 2 " + index3);
+                                isFirst = true;
+                            }
+                            //System.out.println("buf = " + buf.getName() + " " + buf.getSteps());
+                        }
+                    }
+                });
+            }
+            catch (Exception e){
+                index3++;
+                Log.i("Azim", "exception" + index3);
+                database.child(suserTarget).child(user.getLogin()).child("" + index3).setValue(userTarget);
+            }
+        }
+        index3 = 0;
+        isFirst = false;
     }
 
     public void DeleteUserTarget(User user, TargetLocal userTarget, int countOfTargets){

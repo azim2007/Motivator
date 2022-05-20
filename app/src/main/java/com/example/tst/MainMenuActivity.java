@@ -35,7 +35,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         Log.i("Azim", user.getLogin() + " " + user.getName() + " " + user.getStarsCount());
         Random r = new Random();
-        headerText.setText(privets[r.nextInt() % 3] + user.getName()); //ну типа разные приветики)
+        headerText.setText(privets[r.nextInt(3)] + user.getName()); //ну типа разные приветики)
 
         pusher = new Pusher();
     }
@@ -43,7 +43,6 @@ public class MainMenuActivity extends AppCompatActivity {
     public void SearchTargetActivity(View v){
         Intent intent = new Intent(this, SearchTargetActivity.class);
         intent.putExtra(User.class.getSimpleName(), user);
-        statUser = null;
         startActivity(intent);
     }
 
@@ -51,7 +50,12 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyTargetsActivity.class);
         intent.putExtra(User.class.getSimpleName(), user);
         MyTargetsActivity.countOfTargets = pusher.getCountOfTargets();
-        statUser = null;
+        startActivity(intent);
+    }
+    public void UserCabinetActivity(View v){
+        Intent intent = new Intent(this, UserCabinetActivity.class);
+        intent.putExtra(User.class.getSimpleName(), user);
+        UserCabinetActivity.userCount = pusher.getCountOfUsers();
         startActivity(intent);
     }
 }

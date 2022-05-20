@@ -64,4 +64,18 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/targetsButton2"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="404dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="UserCabinetActivity"
+        android:text="личный кабинет"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

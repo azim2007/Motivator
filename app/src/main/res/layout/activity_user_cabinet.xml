@@ -4,6 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/a1"
     tools:context=".UserCabinetActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="405dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="@font/defectica"
+        android:text="личный кабинет"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUserName"
+        android:layout_width="411dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="@font/defectica"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUserLogin"
+        android:layout_width="411dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUserStarCount"
+        android:layout_width="411dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="344dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="@font/defectica"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="135dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="139dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="138dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/defectica"
+        android:onClick="UpdateUser"
+        android:text="обновить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUserStarCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

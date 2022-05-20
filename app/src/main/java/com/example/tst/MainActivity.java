@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void SignUpAct(View v){
         Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+        SignUpActivity.countOfUsers = pusher.getCountOfUsers();
         startActivity(intent);
     }
 
